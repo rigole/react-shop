@@ -1,12 +1,18 @@
 import React from "react";
-import 'preview-collection.styles.scss';
-import {findByDisplayValue} from "@testing-library/react";
+import './preview-collection.styles.scss';
 
-const PreviewCollectionComponent = () => (
+
+const PreviewCollectionComponent = ({ title, items }) => (
     <div className='collection-preview'>
-        <h1>Title</h1>
+        <h1 className='title'>{ title.toUpperCase() }</h1>
         <div className='preview'>
+
+            {items.map(item => (
+                    <div key={item.id}>{item.name}</div>
+                ))}
+
 
         </div>
     </div>
 )
+export default PreviewCollectionComponent
