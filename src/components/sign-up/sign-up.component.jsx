@@ -6,6 +6,7 @@ import CustomButtonComponent from "../custom-button/custom-button.component";
 import { auth, createUserProfileDocument} from "../../firebase/firebase.utils";
 
 import './sign-up.styles.scss';
+import {match} from "react-router-dom";
 
 class SignUp extends React.Component{
     constructor() {
@@ -17,6 +18,37 @@ class SignUp extends React.Component{
             password: '',
             confirmPassword:''
         }
+    }
+
+    handleSubmit = async event => {
+        event.preventDefault();
+
+        const { displayName, email, password, confirmPassword } = this.state
+
+        if (password != confirmPassword) {
+             alert("Password don't match" )
+            return
+        }
+        
+        
+        try {
+            const { user } = await auth.createUserWithEmailAndPassword(email, password)
+            await createUserProfileDocument(user, { displayName })
+
+            this.setState({
+                displayName: '',
+                email: '',
+                password: '',
+                confirmPassword: ''
+            })
+        } catch (error) {
+            console.error(error)
+        }
+
+    }
+    handleChange = event => {
+        const { name, value } = event.target
+        this.setState({[name]: value})
     }
 
     render() {
@@ -60,8 +92,11 @@ class SignUp extends React.Component{
                         label='confirm your password'
                         required
                     />
+                    <CustomButtonComponent type='submit'>SIGN UP</CustomButtonComponent>
                 </form>
             </div>
         )
     }
 }
+
+export default SignUp
