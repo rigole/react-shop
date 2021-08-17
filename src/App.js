@@ -13,13 +13,14 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 class App extends React.Component{
     unsubscribeFromAuth = null
    componentDidMount() {
+        const { setCurrentUser } = this.props;
        this.unsubscribeFromAuth =  auth.onAuthStateChanged(async userAuth => {
            createUserProfileDocument(userAuth)
            if (userAuth){
               const userRef = await createUserProfileDocument(userAuth)
 
               userRef.onSnapshot(snapshot => {
-                 this.props.setCurrentUser({
+                  setCurrentUser({
                           id: snapshot.id,
                           ...snapshot.data()
                       })
@@ -27,9 +28,7 @@ class App extends React.Component{
                   })
           }
           else {
-              this.setState({
-                  currentUser: userAuth
-              })
+               setCurrentUser(userAuth)
           }
      })
        this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
