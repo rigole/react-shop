@@ -58,6 +58,7 @@ import { createStructuredSelector } from "reselect";
                     <Route exact path='/' component={ HomePage }/>
                     <Route path ='/shop' component={ ShopPage }/>
                     <Route path='/signin' component={SignInAndSignUpPage} />
+                    <Route exact path='/checkout' component={CheckoutPage} />
                 </Switch>
             </div>
         );
