@@ -7,8 +7,10 @@ import { selectCartItems } from "../../redux/cart/cart.selectors";
 import { createStructuredSelector } from "reselect";
 import {withRouter} from "react-router-dom";
 
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
 
-const CartDropdown = ({ cartItems, history }) => (
+
+const CartDropdown = ({ cartItems, history, dispatch  }) => (
   <div className='cart-dropdown'>
       <div className='cart-items'>
           {
@@ -22,7 +24,11 @@ const CartDropdown = ({ cartItems, history }) => (
 
           }
       </div>
-    <CustomButtonComponent onClick={() => history.push('/checkout')}>
+    <CustomButtonComponent
+        onClick={() => {
+            history.push('/checkout')
+            dispatch(toggleCartHidden())
+        }}>
         GO TO CHECKOUT
     </CustomButtonComponent>
   </div>
