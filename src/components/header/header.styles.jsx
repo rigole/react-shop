@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 
 const OptionConstainerStyles = css`
-    padding: 10px 15px;
-  cursor: pointer;
+    padding: 15px 15px;
+    cursor: pointer;
     
 `;
 
