@@ -18,9 +18,10 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     //console.log(firestore.doc('users/128rigolux'))4firebase.firestore().enablePersistence()
 
     const userRef = firestore.doc(`users/${userAuth.uid}`)
+    const collectionRef = firestore.collection('users')
     const snapShot = await userRef.get()
 
-    console.log(snapShot)
+
 
     if (!snapShot.exists){
         const { displayName, email } =  userAuth;
@@ -41,6 +42,20 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
     return userRef;
 }
+
+export const addCollectionsAndDocuments = async (collectionKey, objectsToAdd) => {
+
+    const collectionRef = firestore.collection(collectionKey)
+
+    const batch = firestore.batch();
+    objectsToAdd.forEach(obj => {
+        const  newDocRef = collectionRef.doc()
+        batch.set(newDocRef, obj)
+    })
+
+    return await batch.commit()
+}
+
 
 firebase.initializeApp(firebaseConfig);
 export const auth = firebase.auth()

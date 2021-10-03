@@ -18,10 +18,15 @@ import { selectCurrentUser } from "./redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
 
 
+
+
  class App extends React.Component{
     unsubscribeFromAuth = null
-   componentDidMount() {
+
+    componentDidMount() {
         const { setCurrentUser } = this.props;
+
+
        this.unsubscribeFromAuth =  auth.onAuthStateChanged(async userAuth => {
            createUserProfileDocument(userAuth)
            if (userAuth){
@@ -35,9 +40,10 @@ import { createStructuredSelector } from "reselect";
 
                   })
           }
-          else {
-               setCurrentUser(userAuth)
-          }
+
+               setCurrentUser(userAuth);
+
+
      })
        this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
            this.setState({ currentUser:user});
