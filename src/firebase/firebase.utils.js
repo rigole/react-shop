@@ -15,7 +15,6 @@ const firebaseConfig = {
 export const createUserProfileDocument = async (userAuth, additionalData) => {
     if (!userAuth) return;
 
-    //console.log(firestore.doc('users/128rigolux'))4firebase.firestore().enablePersistence()
 
     const userRef = firestore.doc(`users/${userAuth.uid}`)
     const collectionRef = firestore.collection('users')
