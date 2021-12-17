@@ -1,5 +1,5 @@
  import React from "react";
-import './App.css';
+
 
 import {Route, Switch} from "react-router-dom";
 
@@ -9,6 +9,7 @@ import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up
 import CheckoutPage from "./pages/checkout/checkout.component";
 
 
+import { GlobalStyle } from "./global.styles";
 import Header from "./components/header/header.component";
 import { connect } from "react-redux";
 import { setCurrentUser  } from "./redux/user/user.actions";
@@ -56,9 +57,10 @@ import { createStructuredSelector } from "reselect";
         this.unsubscribeFromAuth();
      }
 
-    render(){
+    render(){ 
         return (
             <div>
+                <GlobalStyle/>
                 <Header />
                 <Switch>
                     <Route exact path='/' component={ HomePage }/>
