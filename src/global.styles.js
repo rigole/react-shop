@@ -7,6 +7,8 @@ export const GlobalStyle = createGlobalStyle`
     
     @media screen and (max-width: 800px){
       padding: 10px;
+      height: 60px;
+      margin-bottom: 20px;
     }
   }
   a {
@@ -16,5 +18,7 @@ export const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+  
+  
 
 `

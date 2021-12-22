@@ -3,7 +3,7 @@
 
 import {Route, Switch} from "react-router-dom";
 
-import ShopPage from "./pages/shop/shop.component";
+import ShopPage from "./pages/shop/shop.component"
 import HomePage from "./pages/homepage/homepage.component"
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 import CheckoutPage from "./pages/checkout/checkout.component";
@@ -29,7 +29,7 @@ import { createStructuredSelector } from "reselect";
 
 
        this.unsubscribeFromAuth =  auth.onAuthStateChanged(async userAuth => {
-           createUserProfileDocument(userAuth)
+           //createUserProfileDocument(userAuth)
            if (userAuth){
               const userRef = await createUserProfileDocument(userAuth)
 
@@ -46,18 +46,18 @@ import { createStructuredSelector } from "reselect";
 
 
      })
-       this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+       /*this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
            this.setState({ currentUser:user});
 
           // console.log(user)
-       })
+       })*/
  }
 
      componentWillUnmount() {
         this.unsubscribeFromAuth();
      }
 
-    render(){ 
+    render(){
         return (
             <div>
                 <GlobalStyle/>
