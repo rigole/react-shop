@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { firestore, convertCollectionsSnapshotToMap } from "../../firebase/firebase.utils";
 import { updateCollections } from "../../redux/shop/shop.actions";
 import {WithSpinner} from "../../components/with-spinner/with-spinner.component";
+import { fetchCollectionsStartAsync } from "../../redux/shop/shop.actions";
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionOverviewComponent)
 const CollectionPageWithSpinner = WithSpinner(CollectionPage)
