@@ -3,15 +3,13 @@
 
 import {Route, Switch} from "react-router-dom";
 
-//import ShopPage from "./pages/shop/shop.component"
-//import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
-//import CheckoutPage from "./pages/checkout/checkout.component";
-
 
 import { GlobalStyle } from "./global.styles";
 import Header from "./components/header/header.component";
 import { connect } from "react-redux";
 import { setCurrentUser  } from "./redux/user/user.actions";
+
+import ErrorBoundary from "./components/error-boundary/error-boundary.component";
 
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { selectCurrentUser } from "./redux/user/user.selectors";
@@ -67,12 +65,14 @@ const CheckoutPage = lazy(() => import("./pages/checkout/checkout.component"))
                 <GlobalStyle/>
                 <Header />
                 <Switch>
+                    <ErrorBoundary>
                         <Suspense fallback={<div>...Loading</div>}>
                              <Route exact path='/' component={ HomePage }/>
                              <Route path ='/shop' component={ ShopPage }/>
-                             <Route path='/signin' component={SignInAndSignUpPage} />
                             <Route exact path='/checkout' component={CheckoutPage} />
-                    </Suspense>
+                            <Route path='/signin' component={SignInAndSignUpPage} />
+                        </Suspense>
+                    </ErrorBoundary>
                 </Switch>
             </div>
         );
