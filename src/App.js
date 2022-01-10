@@ -71,6 +71,7 @@ const CheckoutPage = lazy(() => import("./pages/checkout/checkout.component"))
                              <Route path ='/shop' component={ ShopPage }/>
                             <Route exact path='/checkout' component={CheckoutPage} />
                             <Route path='/signin' component={SignInAndSignUpPage} />
+
                         </Suspense>
                     </ErrorBoundary>
                 </Switch>
